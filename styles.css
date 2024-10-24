@@ -4,7 +4,10 @@ body, html {
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     background-color: #000;
-    
+}
+
+body {
+    padding-top: 80px; /* Adjust this value based on the height of your top bar */
 }
 
 .content {
@@ -14,14 +17,13 @@ body, html {
     align-items: center;
     justify-content: center;
     text-align: center;
-
-    margin-top: 20%;
+    margin-top: 5%;
+    margin-bottom: 5px;
     color: #f0f0f0;
     font-size: 20px;
-    
 }
 
-.image-container{
+.image-container {
     width: 100%;
     height: 100vh; /* Full viewport height */
     display: flex;
@@ -30,6 +32,7 @@ body, html {
     overflow: hidden; /* Allow the image to enlarge without being clipped */
     position: relative; /* Enable absolute positioning for inner images */
     margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .scroll-image {
@@ -37,32 +40,47 @@ body, html {
     height: auto;
     max-height: 80vh; /* Limit the starting height to 80% of the viewport height */
     transition: transform 1s ease-in-out, border 1s ease-in-out, opacity 1s ease-in-out;
-    transform-origin: center center; /* Image grows from the center */
-    border: 5px solid #000; /* Black border */
-    border-radius: 10px; /* Rounded corners */
-    z-index: 1; /* Ensure the first image is on top */
 }
 
-
-
-/* Enlarged state for the first image */
-.enlarged {
-    transform: scale(1.7); /* Enlarge to fill the viewport */
+.top-bar {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden; /* Ensure the text doesn't overflow the container */
+    font-size: 24px; /* Increase font size */
 }
 
-
-/* Spacer to create enough scrolling distance */
-.spacer {
-    height: 50vh;
-    background-color: #f0f0f0;
+.scrolling-text-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
 }
-.gif-image{
 
-    width: 30%;
-    height: auto;
-
-
+.scrolling-text {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite; /* Slowed down the animation to 30s */
 }
+
+.scrolling-text span {
+    padding: 0 2rem; /* Adjust spacing between phrases */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 .button-container {
     display: flex;
     align-items: center; /* Center vertically */
@@ -71,11 +89,19 @@ body, html {
     margin-bottom: 100px;
 }
 
-button {
-    padding: 30px 60px; /* Add padding to buttons */
-    font-size: 16px; /* Font size */
-    margin: 0 10px; /* Space between buttons and text */
-    cursor: pointer; /* Change cursor to pointer */
+.button-container button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #555;
 }
 
 span {
@@ -100,9 +126,24 @@ span {
     transition: opacity 0.5s ease-in-out; /* Transition for fading */
 }
 
-
 /* Class to slide in and show the images */
 .show {
     transform: translateX(0); /* Slide in to the center */
     opacity: 1; /* Show the image */
+}
+
+/* Enlarged state for the first image */
+.enlarged {
+    transform: scale(1.7); /* Enlarge to fill the viewport */
+}
+
+/* Spacer to create enough scrolling distance */
+.spacer {
+    height: 50vh;
+    background-color: #f0f0f0;
+}
+
+.gif-image {
+    width: 30%;
+    height: auto;
 }
