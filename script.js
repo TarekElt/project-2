@@ -1,77 +1,73 @@
-let isEnlarged = false; // Track if the image is enlarged
+let isEnlarged = false; 
+const images = [
+    "images/rainbow.jpg",
+    "images/sunset.jpg",
+    "images/moon_car.jpg",
+    "images/moon_city.jpg"
+];
+let currentIndex = 0;
+const mainImage = document.getElementById("main-image");
+
+function showImage(index) {
+    mainImage.style.opacity = 0; 
+    setTimeout(() => {
+        mainImage.src = images[index]; 
+        mainImage.style.opacity = 1; 
+    }, 500); 
+}
+
 
 window.addEventListener('scroll', function() {
-    const image = document.querySelector('.scroll-image');
-    const imageRect = image.getBoundingClientRect();
-    const scrollPosition = window.scrollY; // Current scroll position
+    const imageRect = mainImage.getBoundingClientRect();
+    const scrollPosition = window.scrollY;
 
-    // Check if the image is halfway visible in the viewport
     const halfwayVisible = imageRect.top < window.innerHeight / 2 && imageRect.bottom > window.innerHeight / 2;
 
-    // If halfway visible and below the image, enlarge the image
     if (halfwayVisible) {
-        image.classList.add('enlarged');
-        isEnlarged = true; // Update the state
+        mainImage.classList.add('enlarged');
+        isEnlarged = true;
     } else if (isEnlarged && scrollPosition < imageRect.top + window.scrollY) {
-        // If above the image, revert to original size
-        image.classList.remove('enlarged');
-        isEnlarged = false; // Update the state
+        mainImage.classList.remove('enlarged');
+        isEnlarged = false;
     } else if (scrollPosition >= imageRect.bottom + window.scrollY) {
-        // If below the image, keep it enlarged
-        image.classList.add('enlarged');
-        isEnlarged = true; // Update the state
+        mainImage.classList.add('enlarged');
+        isEnlarged = true;
     }
 });
 
-// Button click event listeners
 document.getElementById('dog-button').addEventListener('click', function() {
-    console.log("Dog button clicked"); // Debug log
-    const dogImages = document.querySelectorAll('#dog-images img');
-    const catImages = document.querySelectorAll('#cat-images img');
-
-    // Hide cat images
-    catImages.forEach(img => {
-        img.classList.remove('show'); // Remove the show class to hide
-        img.style.opacity = '0'; // Set opacity to 0
-    });
-
-    // Show dog images with animation
-    document.getElementById('dog-images').style.display = 'flex'; // Show dog images container
-    dogImages.forEach((img, index) => {
-        setTimeout(() => {
-            img.classList.add('show'); // Add the show class to animate
-            img.style.opacity = '1'; // Fade in
-        }, index * 100); // Stagger the animation
-    });
-
-    // Hide the cat images if already displayed
-    if (document.getElementById('cat-images').style.display === 'flex') {
-        document.getElementById('cat-images').style.display = 'none'; // Hide cat images container
-    }
+    toggleGalleryVisibility('dog');
 });
 
 document.getElementById('cat-button').addEventListener('click', function() {
-    console.log("Cat button clicked"); // Debug log
-    const catImages = document.querySelectorAll('#cat-images img');
-    const dogImages = document.querySelectorAll('#dog-images img');
+    toggleGalleryVisibility('cat');
+});
 
-    // Hide dog images
-    dogImages.forEach(img => {
-        img.classList.remove('show'); // Remove the show class to hide
-        img.style.opacity = '0'; // Set opacity to 0
+function toggleGalleryVisibility(type) {
+    const targetImages = document.querySelectorAll(`#${type}-images img`);
+    const otherImages = document.querySelectorAll(`#${type === 'dog' ? 'cat' : 'dog'}-images img`);
+
+    otherImages.forEach(img => {
+        img.classList.remove('show');
+        img.style.opacity = '0';
     });
-
-    // Show cat images with animation
-    document.getElementById('cat-images').style.display = 'flex'; // Show cat images container
-    catImages.forEach((img, index) => {
+    document.getElementById(`${type}-images`).style.display = 'flex';
+    targetImages.forEach((img, index) => {
         setTimeout(() => {
-            img.classList.add('show'); // Add the show class to animate
-            img.style.opacity = '1'; // Fade in
-        }, index * 100); // Stagger the animation
+            img.classList.add('show');
+            img.style.opacity = '1';
+        }, index * 100);
     });
 
-    // Hide the dog images if already displayed
-    if (document.getElementById('dog-images').style.display === 'flex') {
-        document.getElementById('dog-images').style.display = 'none'; // Hide dog images container
-    }
+    document.getElementById(`${type === 'dog' ? 'cat' : 'dog'}-images`).style.display = 'none';
+}
+
+document.getElementById("prev-image").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+});
+
+document.getElementById("next-image").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
 });

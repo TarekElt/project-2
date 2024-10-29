@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Break</title>
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
 
@@ -45,7 +46,19 @@
     </div>
 
     <div class="image-container">
-        <img src="images/rainbow.jpg" alt="Image to Enlarge" class="scroll-image">
+        <div class="enlarged-image-container">
+            <img src="images/rainbow.jpg" alt="Image to Enlarge" class="scroll-image" id="main-image">
+
+            <button class="arrow left-arrow" id="prev-image">&#10094;</button>
+            <button class="arrow right-arrow" id="next-image">&#10095;</button>
+        </div>
+
+        <div id="image-gallery" style="display: none;">
+            <img src="images/rainbow.jpg" alt="Rainbow Image">
+            <img src="images/sunset.jpg" alt="Rainbow Image">
+            <img src="images/moon_car.jpg" alt="New Image 1">
+            <img src="images/moon_city.jpg" alt="New Image 2">
+        </div>
     </div>
 
     <div class="button-container">
@@ -64,6 +77,20 @@
         <img src="images/cat2.jpg" alt="Cat 2">
     </div>
 
+    <div class="inspiration-text">
+        <p>Sometimes life throws a ton at us, and it feels like we’re just barely keeping up. But here’s the thing: every big goal, every dream, and every step forward starts with the decision to just go for it, even if it’s one small action at a time. You don’t need to have everything figured out—you just need to keep moving, to rise up and give each day your best shot. So take a breath, clear your mind, and step forward with everything you’ve got. You’re on your way up, and the best version of you is right there, ready to show up.</p>
+    </div>
+
+
     <script src="script.js"></script>
+
+    <footer>
+        <div class="footer-content">
+
+            <h3>Did you find it?</h3>
+        
+        </div>
+    </footer>
 </body>
+
 </html>

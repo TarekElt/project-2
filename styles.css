@@ -1,17 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sintony:wght@400;700&display=swap');
+
+
+
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     background-color: #000;
+    font-family: 'Sintony', sans-serif;
 }
 
 body {
-    padding-top: 80px; /* Adjust this value based on the height of your top bar */
+    padding-top: 80px; 
 }
 
 .content {
-    min-height: 100vh; /* Ensures enough content to scroll */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,20 +30,20 @@ body {
 
 .image-container {
     width: 100%;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Allow the image to enlarge without being clipped */
-    position: relative; /* Enable absolute positioning for inner images */
+    overflow: hidden; 
+    position: relative; 
     margin-bottom: 0px;
     margin-top: 0px;
 }
 
 .scroll-image {
-    width: 60%; /* Start with a smaller width */
+    width: 60%; 
     height: auto;
-    max-height: 80vh; /* Limit the starting height to 80% of the viewport height */
+    max-height: 80vh; 
     transition: transform 1s ease-in-out, border 1s ease-in-out, opacity 1s ease-in-out;
 }
 
@@ -48,14 +53,16 @@ body {
     color: white;
     text-align: center;
     padding: 30px 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
-    overflow: hidden; /* Ensure the text doesn't overflow the container */
-    font-size: 24px; /* Increase font size */
+    overflow: hidden; 
+    font-size: 24px; 
 }
-
+h1, h2 {
+    font-family: 'Bebas Neue', sans-serif;
+}
 .scrolling-text-wrapper {
     display: flex;
     width: 100%;
@@ -65,11 +72,11 @@ body {
 .scrolling-text {
     display: flex;
     white-space: nowrap;
-    animation: scroll 30s linear infinite; /* Slowed down the animation to 30s */
+    animation: scroll 30s linear infinite; 
 }
 
 .scrolling-text span {
-    padding: 0 2rem; /* Adjust spacing between phrases */
+    padding: 0 2rem; 
 }
 
 @keyframes scroll {
@@ -83,9 +90,9 @@ body {
 
 .button-container {
     display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    margin-top: 100px; /* Move buttons closer to the image */
+    align-items: center; 
+    justify-content: center; 
+    margin-top: 30px; 
     margin-bottom: 100px;
 }
 
@@ -105,39 +112,36 @@ body {
 }
 
 span {
-    font-size: 16px; /* Match the font size of buttons */
-    margin: 0 30px; /* Space around 'or' */
+    font-size: 16px; 
+    margin: 0 30px; 
     color: #f0f0f0;
 }
 
 .image-gallery {
-    display: flex; /* Keep it flexible */
-    justify-content: center; /* Center the images */
-    flex-wrap: wrap; /* Allow images to wrap */
-    margin-top: 5px; /* Space above the gallery */
-    position: relative; /* Relative positioning for absolute child elements */
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: 5px; 
+    position: relative; 
 }
 
 .image-gallery img {
-    width: 500px; /* Adjust size as needed */
-    height: auto; /* Keep aspect ratio */
-    margin: 10px; /* Space between images */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s ease-in-out; /* Transition for fading */
+    width: 500px; 
+    height: auto; 
+    margin: 10px; 
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
 }
 
-/* Class to slide in and show the images */
 .show {
-    transform: translateX(0); /* Slide in to the center */
-    opacity: 1; /* Show the image */
+    transform: translateX(0);
+    opacity: 1; 
 }
 
-/* Enlarged state for the first image */
 .enlarged {
-    transform: scale(1.7); /* Enlarge to fill the viewport */
+    transform: scale(1.7); 
 }
 
-/* Spacer to create enough scrolling distance */
 .spacer {
     height: 50vh;
     background-color: #f0f0f0;
@@ -146,4 +150,64 @@ span {
 .gif-image {
     width: 30%;
     height: auto;
+}
+.enlarged-image-container {
+    position: relative;
+    width: 60%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #f0f0f0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Sintony', sans-serif;
+}
+.gif-image {
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-image:hover {
+    transform: scale(1.1); 
+}
+
+.inspiration-text {
+    max-width: 600px;
+    margin: 20px auto 50px;
+    padding: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: center;
+    color: #ffffff;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
